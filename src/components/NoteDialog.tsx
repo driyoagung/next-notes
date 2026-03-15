@@ -78,7 +78,7 @@ export default function NoteDialog({ isOpen, onClose, onSave, initialData }: Not
             <label htmlFor="category" className="text-sm font-medium leading-none text-foreground">
               Category
             </label>
-            <Select value={category} onValueChange={setCategory}>
+            <Select value={category} onValueChange={(val) => setCategory(val || 'Other')}>
               <SelectTrigger className="focus:ring-indigo-500">
                 <SelectValue placeholder="Select a category" />
               </SelectTrigger>
