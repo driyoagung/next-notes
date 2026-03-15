@@ -59,9 +59,9 @@ export default function NoteDialog({ isOpen, onClose, onSave, initialData }: Not
             {initialData ? 'Update the details of your note below.' : 'Fill in the details for your new note.'}
           </DialogDescription>
         </DialogHeader>
-        <form onSubmit={handleSubmit} className="space-y-4 py-4">
-          <div className="space-y-2">
-            <label htmlFor="title" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-6 py-6">
+          <div className="space-y-2.5">
+            <label htmlFor="title" className="text-sm font-medium leading-none text-foreground peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
               Title
             </label>
             <Input
@@ -74,8 +74,8 @@ export default function NoteDialog({ isOpen, onClose, onSave, initialData }: Not
               className="focus-visible:ring-indigo-500"
             />
           </div>
-          <div className="space-y-2">
-            <label htmlFor="category" className="text-sm font-medium leading-none">
+          <div className="space-y-2.5">
+            <label htmlFor="category" className="text-sm font-medium leading-none text-foreground">
               Category
             </label>
             <Select value={category} onValueChange={setCategory}>
@@ -90,8 +90,8 @@ export default function NoteDialog({ isOpen, onClose, onSave, initialData }: Not
               </SelectContent>
             </Select>
           </div>
-          <div className="space-y-2">
-            <label htmlFor="content" className="text-sm font-medium leading-none">
+          <div className="space-y-2.5">
+            <label htmlFor="content" className="text-sm font-medium leading-none text-foreground">
               Content
             </label>
             <Textarea
@@ -104,11 +104,11 @@ export default function NoteDialog({ isOpen, onClose, onSave, initialData }: Not
               className="resize-none focus-visible:ring-indigo-500"
             />
           </div>
-          <DialogFooter className="pt-4">
-            <Button type="button" variant="outline" onClick={onClose} disabled={isSubmitting}>
+          <DialogFooter className="pt-6 sm:space-x-4">
+            <Button type="button" variant="outline" onClick={onClose} disabled={isSubmitting} className="w-full sm:w-auto">
               Cancel
             </Button>
-            <Button type="submit" disabled={!title.trim() || !content.trim() || isSubmitting} className="bg-indigo-600 hover:bg-indigo-700 text-white">
+            <Button type="submit" disabled={!title.trim() || !content.trim() || isSubmitting} className="w-full sm:w-auto bg-indigo-600 hover:bg-indigo-700 text-white">
               {isSubmitting ? 'Saving...' : 'Save Note'}
             </Button>
           </DialogFooter>

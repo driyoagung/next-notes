@@ -3,7 +3,7 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/componen
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Pencil, Trash2, Clock } from 'lucide-react';
-import { formatDistanceToNow } from 'date-fns';
+import { formatDistanceToNow, isValid } from 'date-fns';
 
 interface NoteCardProps {
   note: INote & { _id: string };
@@ -28,7 +28,9 @@ export default function NoteCard({ note, onEdit, onDelete }: NoteCardProps) {
           <CardTitle className="text-xl font-semibold leading-tight line-clamp-1">{note.title}</CardTitle>
           <div className="flex items-center text-xs text-zinc-500 dark:text-zinc-400 mt-2">
             <Clock className="w-3 h-3 mr-1" />
-            {formatDistanceToNow(new Date(note.updatedAt), { addSuffix: true })}
+            {note.updatedAt && isValid(new Date(note.updatedAt)) 
+              ? formatDistanceToNow(new Date(note.updatedAt), { addSuffix: true }) 
+              : 'Unknown time'}
           </div>
         </div>
         <Badge className={`ml-2 hover:bg-opacity-80 border-none ${getCategoryColor(note.category)}`}>

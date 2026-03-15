@@ -32,7 +32,6 @@ export default function Home() {
 
   // Fetch Notes
   const fetchNotes = useCallback(async () => {
-    setLoading(true);
     try {
       const queryParams = new URLSearchParams();
       if (debouncedSearch) queryParams.append('search', debouncedSearch);
@@ -126,7 +125,7 @@ export default function Home() {
                 />
               </div>
               <div className="flex items-center gap-3 w-full sm:w-auto">
-                <Select value={category} onValueChange={setCategory}>
+                <Select value={category} onValueChange={(val) => setCategory(val || 'All')}>
                   <SelectTrigger className="w-full sm:w-36 bg-zinc-100/50 dark:bg-zinc-900/50 border-zinc-200 dark:border-zinc-800 focus:ring-indigo-500">
                     <SelectValue placeholder="Category" />
                   </SelectTrigger>
